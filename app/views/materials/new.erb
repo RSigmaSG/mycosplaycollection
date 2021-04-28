@@ -1,9 +1,10 @@
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
-  <form action='/tweets' method="post">
-    Content:
-    <input type="text" name="cosplay[character_name]"><br>
-    <input type="text" name="cosplay[show]"><br>
+  <form action='/materials' method="post">
+    Name:
+    <input type="text" name="material[name]"><br>
+    Link:
+    <input type="text" name="material[store_link]"><br>
 
     Create Your Cosplay:
 

@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :cosplay
+  has_many :cosplays
 end

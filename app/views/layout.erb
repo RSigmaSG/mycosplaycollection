@@ -9,8 +9,10 @@
     <header>
       <h1>Welcome to My Cosplay Collection!</h1>
       <% if Helpers.is_logged_in?(session) %>
-        <h2>User: <%= Helpers.current_user(session).username %></h2>
-        <h3><p><a href="/users/logout">Log Out</a></p></h3>
+        <h3>User: <%= Helpers.current_user(session).username %></h3>
+        <form method="get" action="/users/logout">
+          <button type="submit">Log Out</button>
+        </form>
       <% end %>
       </header>
       <%= yield %>

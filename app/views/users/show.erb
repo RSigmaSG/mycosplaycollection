@@ -1,3 +1,17 @@
-<p><%= @user.username %></p>
+<form method="get" action="/cosplays/new">
+    <button type="submit">Add Cosplay</button>
+</form>
 
-<p><a href="/users/logout">Log Out</a></p>
+<h2>My Cosplays:</h2>
+
+<ul>
+    <% @cosplays.each do |cosplay|%>
+        <li>
+            <p>Character: <%= cosplay.character_name%></p>
+            <p>Character: <%= cosplay.show%></p>
+            <% cosplay.materials.each do |material|%>
+                
+            <% end %>
+        </li>
+    <% end %>
+</ul>

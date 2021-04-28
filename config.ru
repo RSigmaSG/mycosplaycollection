@@ -7,4 +7,5 @@ end
 use Rack::MethodOverride
 use CosplaysController
 use UsersController
+use MaterialsController
 run ApplicationController

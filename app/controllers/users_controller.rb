@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     get '/users/show' do
         if Helpers.is_logged_in?(session)
             @user = Helpers.current_user(session)
-            #@tweets = @user.tweets
+            @cosplays = @user.cosplays
             erb :"/users/show"
         else
             redirect "/"

@@ -1,6 +1,6 @@
 class CosplaysController < ApplicationController
     get '/cosplays' do
-        @cosplays = Tweet.all
+        @cosplays = Material.all
         erb :"cosplays/index"
     end
     get '/cosplays/:id/edit' do
@@ -22,7 +22,9 @@ class CosplaysController < ApplicationController
             redirect to "cosplays/new"
         else
             @cosplay = Cosplay.create(params[:cosplay])
-            redirect to "cosplays/#{@cosplay.id}"
+            @cosplay.user_id = Helpers.current_user(session).id
+            @cosplay.save
+            redirect to "users/show"
         end
     end
     patch '/cosplays/:id' do
@@ -32,7 +34,7 @@ class CosplaysController < ApplicationController
         else
             @cosplay = Cosplay.find(params[:id])
             @cosplay.update(params[:cosplay])
-            redirect to "cosplays/#{@cosplay.id}"
+            redirect to "users/show"
         end
     end
     delete '/cosplays/:id' do
