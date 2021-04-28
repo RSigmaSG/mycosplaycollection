@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_190447) do
 
   create_table "cosplays", force: :cascade do |t|
     t.string "character_name"
-    t.string "Show"
+    t.string "show"
     t.integer "user_id"
   end
 

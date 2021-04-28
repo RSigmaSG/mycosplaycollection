@@ -1,15 +1,16 @@
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
-  <form action='/cosplays' method="post">
-    Character:
+  <form action='/tweets' method="post">
+    Content:
     <input type="text" name="cosplay[character_name]"><br>
-    Show:
     <input type="text" name="cosplay[show]"><br>
 
-    <input type="submit" name="Create Cosplay" id="submit">
+    Create Your Cosplay:
+
+    <input type="submit" name="submit" id="submit">
 
   </form>
-  </br>
+
   <% else %>
       <h1> You Must Be Logged in to Make Tweets </h1>
   <% end %>

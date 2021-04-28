@@ -1,12 +1,18 @@
 <!doctype html>
 <html>
   <head>
-    <title>Fwitter</title>
+    <title>My Cosplay Collection</title>
   </head>
   <body>
 
     <div class="container">
+    <header>
       <h1>Welcome to My Cosplay Collection!</h1>
+      <% if Helpers.is_logged_in?(session) %>
+        <h2>User: <%= Helpers.current_user(session).username %></h2>
+        <h3><p><a href="/users/logout">Log Out</a></p></h3>
+      <% end %>
+      </header>
       <%= yield %>
     </div>
 

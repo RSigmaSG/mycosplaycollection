@@ -1,9 +1,12 @@
-<p><%= @tweet.content %></p> <p><%= @tweet.user.username %></p>
+<p><%= @cosplay.character_name %></p> <p><%= @cosplay.show %></p>
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
-    <% if Helpers.current_user(session).id === @tweet.user_id%>
+    <% if Helpers.current_user(session).id === @cosplay.user_id%>
         <%= @error %>
-        <form id = "form" method="post" action="/tweets/<%= @tweet[:id] %>">
+        <form id = "form" method="post" action="/cosplays/<%= @cosplay[:id] %>">
         <input id="hidden" type="submit" name="_method" value="DELETE">
     <% end %>
+    <form method="get" action="/page2">
+        <button type="submit">Add materials</button>
+    </form>
   <% end %>
