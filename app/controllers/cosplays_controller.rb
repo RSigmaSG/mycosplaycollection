@@ -1,42 +1,42 @@
 class CosplaysController < ApplicationController
-    get '/tweets' do
-        @tweets = Tweet.all
-        erb :"tweets/tweets"
+    get '/cosplays' do
+        @cosplays = Tweet.all
+        erb :"cosplays/index"
     end
-    get '/tweets/:id/edit' do
-        @tweet = Tweet.find(params[:id])
-        erb :"tweets/edit_tweet"
+    get '/cosplays/:id/edit' do
+        @cosplay = Cosplay.find(params[:id])
+        erb :"cosplays/edit_tweet"
     end
-    get '/tweets/new' do
+    get '/cosplays/new' do
         erb :"tweets/new"
     end
 
-    get '/tweets/:id' do
-        @tweet = Tweet.find(params[:id])
-        erb :"tweets/show_tweet"
+    get '/cosplays/:id' do
+        @cosplay = Cosplay.find(params[:id])
+        erb :"cosplays/show"
     end
-    post '/tweets' do
+    post '/cosplays' do
         #binding.pry
         if (params[:content] === "")
-            redirect to "tweets/new"
+            redirect to "cosplays/new"
         else
-            @tweet = Tweet.create(content: params[:content], user_id: Helpers.current_user(session).id)
-            redirect to "tweets/#{@tweet.id}"
+            @cosplay = Cosplay.create(content: params[:content], user_id: Helpers.current_user(session).id)
+            redirect to "cosplays/#{@cosplay.id}"
         end
     end
-    patch '/tweets/:id' do
+    patch '/cosplays/:id' do
         #binding.pry
         if (params[:content] === "")
-            redirect to "tweets/#{params[:id]}/edit"
+            redirect to "cosplays/#{params[:id]}/edit"
         else
-            @tweet = Tweet.find(params[:id])
-            @tweet.update(content: params[:content])
-            redirect to "tweets/#{@tweet.id}"
+            @cosplay = Cosplayu.find(params[:id])
+            @cosplay.update(content: params[:content])
+            redirect to "cosplays/#{@cosplay.id}"
         end
     end
-    delete '/tweets/:id' do
-        @tweet = Tweet.find(params[:id])
-        @tweet.destroy
-        redirect "/tweets"
+    delete '/cosplays/:id' do
+        @cosplay = Cosplay.find(params[:id])
+        @cosplay.destroy
+        redirect "/cosplays"
       end
 end
