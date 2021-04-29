@@ -8,9 +8,25 @@
     <% @cosplays.each do |cosplay|%>
         <li>
             <p>Character: <%= cosplay.character_name%></p>
-            <p>Character: <%= cosplay.show%></p>
+            <p>Show: <%= cosplay.show%></p>
+            <form method="get" action="/cosplays/<%= cosplay.id %>/edit">
+                <button type="submit">Edit Cosplay</button>
+            </form>
+           <h3>Materials:</h3>
+            <form method="get" action="/materials/new">
+                <input type="hidden" name="cosplay_id" value= "<%= cosplay.id %>" >
+                <button type="submit">Add Material</button>
+            </form>
             <% cosplay.materials.each do |material|%>
-                
+                <ul>
+                    <li>
+                        <p> Name: <%= material.name%></p>
+                        <p> Link: <%= material.store_link %></p>
+                        <form method="get" action="/materials/<%= material.id %>/edit">
+                            <button type="submit">Edit Material</button>
+                        </form>
+                    </li>
+                </ul>
             <% end %>
         </li>
     <% end %>

@@ -1,9 +1,10 @@
 class MaterialsController < ApplicationController
     get '/materials/:id/edit' do
-        @materials = Cosplay.find(params[:id])
+        @material = Material.find(params[:id])
         erb :"materials/edit"
     end
     get '/materials/new' do
+        @cosplay_id = params[:cosplay_id]
         erb :"materials/new"
     end
 

@@ -1,14 +1,17 @@
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
-    <% if Helpers.current_user(session).id === @tweet.user_id%>
+    <% if Helpers.current_user(session).id === @cosplay.user_id%>
         <%= @error %>
-        <form action="/tweets/<%= @tweet.id%>" method="post">
+        <h2>Edit Cosplay</h2>
+        <form action="/cosplays/<%= @cosplay.id%>" method="post">
         <input id="hidden" type="hidden" name="_method" value="patch">
-            Content:
-            <input type="text" name="content" placeholder=<%= @tweet.content%>><br>
-            Edit Your Tweet:
-
-            <input type="submit" name="submit" id="submit">
+            Name:
+            <input type="text" name="cosplay[character_name]" placeholder=<%= @cosplay.character_name%>>
+            </br>
+            Link:
+            <input type="text" name="cosplay[show]" placeholder=<%= @cosplay.show%>><br>
+            </br>
+            <input type="submit" name="submit" value ="Edit" id="submit">
 
         </form>
     <% else %>
