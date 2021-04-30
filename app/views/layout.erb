@@ -8,11 +8,24 @@
     <div class="container">
     <header>
       <h1>Welcome to My Cosplay Collection!</h1>
+      <form method="get" action="/">
+            <button type="submit">Home</button>
+          </form>
       <% if Helpers.is_logged_in?(session) %>
         <h3>User: <%= Helpers.current_user(session).username %></h3>
+        <form method="get" action="/users/show">
+            <button type="submit">My Collection</button>
+          </form>
         <form method="get" action="/users/logout">
           <button type="submit">Log Out</button>
         </form>
+      <% else %>
+        <form method="get" action="/users/signup">
+            <button type="submit">Sign Up</button>
+          </form>
+          <form method="get" action="/users/login">
+            <button type="submit">Log In</button>
+          </form>
       <% end %>
       </header>
       </br>

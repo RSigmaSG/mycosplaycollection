@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @cosplays =Cosplay.all
     erb :"index"
   end
 end

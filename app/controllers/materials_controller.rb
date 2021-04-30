@@ -26,7 +26,7 @@ class MaterialsController < ApplicationController
         redirect to "users/show"
     end
 
-    delete '/cosplays/:id' do
+    delete '/materials/:id' do
         @material = Material.find(params[:id])
         @material.destroy
         redirect "/users/show"

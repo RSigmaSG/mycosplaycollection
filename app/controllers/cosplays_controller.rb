@@ -39,7 +39,10 @@ class CosplaysController < ApplicationController
     end
     delete '/cosplays/:id' do
         @cosplay = Cosplay.find(params[:id])
+        @cosplay.materials.each do |material| 
+            material.destroy
+        end
         @cosplay.destroy
-        redirect "/cosplays"
+        redirect "/users/show"
     end
 end

@@ -3,7 +3,7 @@
 <%= @error %>
     <% if Helpers.current_user(session).id === @cosplay.user_id%>
         <%= @error %>
-        <form id = "form" method="post" action="/cosplays/<%= @cosplay[:id] %>">
+        <form id = "form" method="post" action="/cosplays/"<%= @cosplay[:id] %>>
         <input id="hidden" type="submit" name="_method" value="DELETE">
     <% end %>
     <form method="get" action="/materials/new">

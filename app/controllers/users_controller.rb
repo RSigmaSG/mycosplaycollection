@@ -41,7 +41,7 @@ class UsersController < ApplicationController
             @cosplays = @user.cosplays
             erb :"/users/show"
         else
-            redirect "/"
+            erb :"/users/show"
         end
     end
 
