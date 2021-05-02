@@ -1,6 +1,6 @@
 class CosplaysController < ApplicationController
     get '/cosplays' do
-        @cosplays = Material.all
+        @cosplays = Cosplay.all
         erb :"cosplays/index"
     end
     get '/cosplays/:id/edit' do
@@ -15,14 +15,14 @@ class CosplaysController < ApplicationController
     end
 
     get '/cosplays/:id' do
-        redirect '/' if Helpers.is_logged_in?(session)
+        redirect '/' if !Helpers.is_logged_in?(session)
         @cosplay = Cosplay.find(params[:id])
         @materials = @cosplay.materials
         erb :"cosplays/show"
     end
     post '/cosplays' do
         #binding.pry
-        redirect '/' if Helpers.is_logged_in?(session)
+        redirect '/' if !Helpers.is_logged_in?(session)
         @cosplay = Cosplay.new(params[:cosplay])
         @cosplay.user_id = Helpers.current_user(session).id
         if (@cosplay.save)
@@ -33,7 +33,7 @@ class CosplaysController < ApplicationController
     end
     patch '/cosplays/:id' do
         #binding.pry
-        redirect '/' if Helpers.is_logged_in?(session)
+        redirect '/' if !Helpers.is_logged_in?(session)
         @cosplay = Cosplay.find(params[:id])
         if (@cosplay.update)
             redirect to "users/show"
@@ -42,7 +42,7 @@ class CosplaysController < ApplicationController
         end
     end
     delete '/cosplays/:id' do
-        redirect '/' if Helpers.is_logged_in?(session)
+        redirect '/' if !Helpers.is_logged_in?(session)
         @cosplay = Cosplay.find(params[:id])
         @cosplay.materials.each do |material| 
             material.destroy

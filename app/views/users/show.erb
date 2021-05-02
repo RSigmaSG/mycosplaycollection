@@ -2,7 +2,8 @@
 <div class="title">
     <h2>My Cosplays:</h2>
     <form method="get" action="/cosplays/new">
-    <button type="submit">Add Cosplay</button>
+        <button type="submit">Add Cosplay</button>
+    </form>
 </div>
 <table class="table-name">
         <thead>
@@ -33,7 +34,7 @@
                         <% cosplay.materials.each do |material|%>
                             <tr><p><%= material.name%> (<a href=<%= material.store_link %>>link</a>)</p>
                                 <p>Quantity: <%= material.quantity%></p>
-                                <p>Price: <%= material.price%></p>
+                                <p>Price: $<%= material.price%></p>
                                 <form method="get" action="/materials/<%= material.id %>/edit">
                                     <button type="submit">Edit Material</button>
                                 </form>

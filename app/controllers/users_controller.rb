@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
     get "/users/signup" do
-        redirect '/' if !Helpers.is_logged_in?(session)
-        @user = User.new
-        erb :"users/signup"
+        if Helpers.is_logged_in?(session)
+            redirect "/"
+        else
+            @user = User.new
+            erb :"users/signup"
+        end
     end
 
     post "/users/signup" do

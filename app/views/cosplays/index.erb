@@ -1,0 +1,36 @@
+<table>
+<% @cosplays.each do |cosplay|%>
+    <tr>
+        <td><%= cosplay.character_name%></p>
+        <form method="get" action="/cosplays/<%= cosplay.id %>/edit">
+            <button type="submit">Edit Cosplay</button>
+        </form></td>
+        <td><%= cosplay.show%></td>
+        <td>
+            <div style="display: flex;justify-content: center;">
+            <form method="get" action="/materials/new">
+                <input type="hidden" name="cosplay_id" value= "<%= cosplay.id %>" >
+                <button type="submit">Add Material</button>
+            </form>
+            </div>
+            <div class="scrollable ">
+             <table class="cell-table">
+                <% cosplay.materials.each do |material|%>
+                    <tr><p><%= material.name%> (<a href=<%= material.store_link %>>link</a>)</p>
+                        <p>Quantity: <%= material.quantity%></p>
+                        <p>Price: $<%= material.price%></p>
+                        <form method="get" action="/materials/<%= material.id %>/edit">
+                            <button type="submit">Edit Material</button>
+                        </form>
+                        <form id = "form" method="post" action="/materials/<%= material[:id] %>">
+                            <input id="hidden" type="submit" name="_method" value="DELETE">
+                        </form>
+                    </tr>
+                <% end %>
+            </table>
+            </div>
+        </td>
+        <td>$<%= cosplay.cost%></td>
+    </tr>
+<% end %>
+</table>

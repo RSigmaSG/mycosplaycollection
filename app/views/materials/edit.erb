@@ -14,16 +14,16 @@
         <% end %>
         <input id="hidden" type="hidden" name="_method" value="patch">
             Name:
-            <input type="text" name="material[name]" placeholder=<%= @material.name%>><br>
+            <input type="text" name="material[name]" value="<%= @material.name%>"><br>
             </br>
             Link:
-            <input type="text" name="material[store_link]" placeholder=<%= @material.store_link%>><br>
+            <input type="text" name="material[store_link]" value="<%= @material.store_link%>"><br>
             </br>
             Quantity:
-            <input type="text" name="material[quantity]" placeholder=<%= @material.quantity%>><br>
+            <input type="text" name="material[quantity]" value="<%= @material.quantity%>"><br>
             <br>
-            Price:
-            <input type="text" name="material[price]" placeholder=<%= @material.price%>><br>
+            Price: $
+            <input type="text" name="material[price]" value="<%= @material.price%>"><br>
             <br>
             <input type="submit" name="submit" value ="Edit" id="submit">
 

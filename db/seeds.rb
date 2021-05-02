@@ -1,18 +1,18 @@
 users_list = {
     "ENE" => {
-      :email => "ene@test.com",
+      :email => "ene@gmail.com",
       :password_digest => BCrypt::Password.create('password')
     },
     "AYAYA" => {
-        :email => "ayaya@test.com",
+        :email => "ayaya@gmail.com",
         :password_digest => BCrypt::Password.create('password')
     },
     "JOJO" => {
-        :email => "jojo@test.com",
+        :email => "jojo@gmail.com",
         :password_digest => BCrypt::Password.create('password')
     },
     "UMU" => {
-        :email => "umu@test.com",
+        :email => "umu@gmail.com",
         :password_digest => BCrypt::Password.create('password')
     },
   }
