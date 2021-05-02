@@ -4,7 +4,7 @@ Sinatra app to organize and purchase cosplay materials.
 
 ## Installation and usage
 
-    To use this app, just clone, run rake db:migrate and then run shotgun. Everything should be set up.
+    To use this app, just clone, run rake db:migrate and then run shotgun. Typically, hosted on  127.0.0.1:9393. If you want, you can rake db:seed to preload some users and cosplays. 
 
 ## Contributing
 
