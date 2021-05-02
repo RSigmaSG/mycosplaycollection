@@ -1,35 +1,55 @@
-
-<h2>My Cosplays:</h2>
 <% if Helpers.is_logged_in?(session) %>
-<table style="border: 1px solid black;">
-    <tr>
-        <th>Character Name</th>
-        <th>Show</th>
-        <th>Materials</th>
-    </tr>
-  <% @cosplays.each do |cosplay|%>
-    <tr>
-        <td style="border: 1px solid black;"><%= cosplay.character_name%></p></td>
-        <td style="border: 1px solid black;"><%= cosplay.show%></td>
-        <td style="border: 1px solid black;">
-            <ul>
-                <% cosplay.materials.each do |material|%>
-                    <li><%= material.name%> (<a href=<%= material.store_link %>><%= material.store_link %></a>)
-                        <form method="get" action="/materials/<%= material.id %>/edit">
-                            <button type="submit">Edit Material</button>
-                        </form>
-                        <form id = "form" method="post" action="/materials/<%= material[:id] %>">
-                            <input id="hidden" type="submit" name="_method" value="DELETE">
-                        </form>
-                    </li>
-                <% end %>
-            </ul>
-        </td>
-    </tr>
-    <% end %>
-</table>
+<div class="title">
+    <h2>My Cosplays:</h2>
     <form method="get" action="/cosplays/new">
     <button type="submit">Add Cosplay</button>
+</div>
+<table class="table-name">
+        <thead>
+        <tr>
+            <th>Character Name</th>
+            <th>Show</th>
+            <th>Materials</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @cosplays.each do |cosplay|%>
+            <tr>
+                <td><%= cosplay.character_name%></p>
+                <form method="get" action="/cosplays/<%= cosplay.id %>/edit">
+                    <button type="submit">Edit Cosplay</button>
+                </form></td>
+                <td><%= cosplay.show%></td>
+                <td>
+                    <div style="display: flex;justify-content: center;">
+                    <form method="get" action="/materials/new">
+                        <input type="hidden" name="cosplay_id" value= "<%= cosplay.id %>" >
+                        <button type="submit">Add Material</button>
+                    </form>
+                    </div>
+                    <div class="scrollable ">
+                     <table class="cell-table">
+                        <% cosplay.materials.each do |material|%>
+                            <tr><p><%= material.name%> (<a href=<%= material.store_link %>>link</a>)</p>
+                                <p>Quantity: <%= material.quantity%></p>
+                                <p>Price: <%= material.price%></p>
+                                <form method="get" action="/materials/<%= material.id %>/edit">
+                                    <button type="submit">Edit Material</button>
+                                </form>
+                                <form id = "form" method="post" action="/materials/<%= material[:id] %>">
+                                    <input id="hidden" type="submit" name="_method" value="DELETE">
+                                </form>
+                            </tr>
+                        <% end %>
+                    </table>
+                    </div>
+                </td>
+                <td>$<%= cosplay.cost%></td>
+            </tr>
+        <% end %>
+    <tbody>
+</table>
 </form>
 
 <% else %>

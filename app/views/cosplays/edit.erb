@@ -1,23 +1,32 @@
-<% if Helpers.is_logged_in?(session) %>
-<%= @error %>
-    <% if Helpers.current_user(session).id === @cosplay.user_id%>
-        <%= @error %>
-        <h2>Edit Cosplay</h2>
-        <form action="/cosplays/<%= @cosplay.id%>" method="post">
-        <input id="hidden" type="hidden" name="_method" value="patch">
-            Name:
-            <input type="text" name="cosplay[character_name]" placeholder=<%= @cosplay.character_name%>>
-            </br>
-            Link:
-            <input type="text" name="cosplay[show]" placeholder=<%= @cosplay.show%>><br>
-            </br>
-            <input type="submit" name="submit" value ="Edit" id="submit">
-
-        </form>
+  <div class="center">
+  <% if Helpers.is_logged_in?(session) %>
+  <%= @error %>
+      <% if Helpers.current_user(session).id === @cosplay.user_id%>
+          <h2>Edit Cosplay</h2>
+          <form action="/cosplays/<%= @cosplay.id%>" method="post">
+          <% if @cosplay.errors.any? %>
+          <div class="error">
+              <ul>
+              <% @cosplay.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+              </ul>
+          </div>
+          <input id="hidden" type="hidden" name="_method" value="patch">
+              Name:
+              <input type="text" name="cosplay[character_name]" placeholder="<%=@cosplay.character_name%>">
+              </br>
+              Link:
+              <input type="text" name="cosplay[show]" placeholder="<%= @cosplay.show%>"><br>
+              </br>
+              <input type="submit" name="submit" value ="Edit" id="submit">
+  
+          </form>
+      <% else %>
+          <h1> You can only edit your own tweets </h1>
+      <% end %>
+  
     <% else %>
-        <h1> You can only edit your own tweets </h1>
+        <h1> You Must Be Logged in to Edit Tweets </h1>
     <% end %>
-
-  <% else %>
-      <h1> You Must Be Logged in to Edit Tweets </h1>
-  <% end %>
+  </div>

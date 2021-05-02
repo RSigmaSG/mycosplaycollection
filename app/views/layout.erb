@@ -2,33 +2,39 @@
 <html>
   <head>
     <title>My Cosplay Collection</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <style>
+    
+    </style>
+    
+    
   </head>
   <body>
 
     <div class="container">
     <header>
       <h1>Welcome to My Cosplay Collection!</h1>
-      <form method="get" action="/">
-            <button type="submit">Home</button>
-          </form>
       <% if Helpers.is_logged_in?(session) %>
-        <h3>User: <%= Helpers.current_user(session).username %></h3>
-        <form method="get" action="/users/show">
-            <button type="submit">My Collection</button>
-          </form>
-        <form method="get" action="/users/logout">
-          <button type="submit">Log Out</button>
-        </form>
-      <% else %>
-        <form method="get" action="/users/signup">
-            <button type="submit">Sign Up</button>
-          </form>
-          <form method="get" action="/users/login">
-            <button type="submit">Log In</button>
-          </form>
+        User: <%= Helpers.current_user(session).username %>
       <% end %>
+      <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <% if Helpers.is_logged_in?(session) %>
+          <a href="/users/show">My Collection</a>
+          <a href="/users/logout">Log Out</a>
+        <% else %>
+          <a href="/users/signup">Sign Up</a>
+          <a href="/users/login">Log In</a>
+         <% end %>
+      </div>
+      
       </header>
-      </br>
+      <div class="spacer">
+        &nbsp;
+    </div></br>
       <%= yield %>
     </div>
 

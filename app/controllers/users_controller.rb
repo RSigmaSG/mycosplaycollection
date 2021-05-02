@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
 
     get "/users/signup" do
+        redirect '/' if !Helpers.is_logged_in?(session)
+        @user = User.new
         erb :"users/signup"
     end
 
     post "/users/signup" do
-        user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-        if user.save && !user.username.empty?
-            redirect "/users/login"
-        else
-            redirect "/users/signup"
+        @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+        
+        if @user.save
+            session[:user_id] = @user.id
+            redirect '/'
+         else
+            erb :'users/signup'
         end
-
     end
 
 
@@ -41,8 +44,14 @@ class UsersController < ApplicationController
             @cosplays = @user.cosplays
             erb :"/users/show"
         else
-            erb :"/users/show"
+            redirect "/"
         end
+    end
+
+    get '/users/:id' do
+        @user =User.find(params[:id])
+        @cosplays = @user.cosplays
+        erb :"/users/page"
     end
 
 end

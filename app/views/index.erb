@@ -1,14 +1,22 @@
 
 <h2>Cosplay Collection</h2>
-
-<% @cosplays.each do |cosplay|%>
-    <div>
-    Character: <%= cosplay.character_name %>
-    </br>
-    from <%= cosplay.show %>
-    </br>
-    by <%= cosplay.user.username %>
-    </div>
-    <br>
-<% end %>
-
+<table class="table-name">
+    <thead>
+        <tr>
+            <th>Character Name</th>
+            <th>Show</th>
+            <th>User</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @cosplays.each do |cosplay|%>
+        <tr>
+            <td><%= cosplay.character_name%></p></td>
+            <td><%= cosplay.show%></td>
+            <td><a href= "/users/<%=cosplay.user_id%>"><%= cosplay.user.username%></a></td>
+            <td><%= cosplay.created_at%></td>
+        </tr>
+        <% end %>
+    <tbody>
+</table>

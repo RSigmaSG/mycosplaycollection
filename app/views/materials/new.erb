@@ -1,17 +1,33 @@
-<% if Helpers.is_logged_in?(session) %>
-<%= @error %>
+<div class="center">
+  <% if Helpers.is_logged_in?(session) %>
   <form action='/materials' method="post">
+    <% if @material.errors.any? %>
+      <div class="error">
+        <ul>
+        <% @material.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
     Name:
-    <input type="text" name="material[name]"><br>
-    Link:
-    <input type="text" name="material[store_link]"><br>
+    <input type="text" name="material[name]" value="<%= @material.name %>" required></br></br>
 
-    Create Your Material:
+    Link:
+    <input type="text" name="material[store_link]" value="<%= @material.store_link %>" required></br></br>
+
+    Quantity:
+    <input type="text" name="material[quantity]" value="<%= @material.quantity %>" required></br></br>
+
+    Price:
+    <input type="text" name="material[price]" value="<%= @material.price %>" required></br></br>
+
     <input type="hidden" name="material[cosplay_id]" value= "<%= @cosplay_id %>" >
     <input type="submit" name="submit" id="submit">
 
-  </form>
+    </form>
 
-  <% else %>
-      <h1> You Must Be Logged in to Make Tweets </h1>
-  <% end %>
+    <% else %>
+        <h1> You Must Be Logged in to Make Tweets </h1>
+    <% end %>
+</div>

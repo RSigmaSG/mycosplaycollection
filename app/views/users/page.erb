@@ -1,0 +1,16 @@
+<table class="table-name">
+        <thead>
+        <tr>
+            <th>Character Name</th>
+            <th>Show</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @cosplays.each do |cosplay|%>
+            <tr>
+                <td><%= cosplay.character_name%></p></td>
+                <td><%= cosplay.show%></td>
+            </tr>
+        <% end %>
+    <tbody>
+</table>

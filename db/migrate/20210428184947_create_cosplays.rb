@@ -4,6 +4,8 @@ class CreateCosplays < ActiveRecord::Migration[6.0]
       t.string :character_name
       t.string :show
       t.integer :user_id
+
+      t.timestamps
     end
   end
 end

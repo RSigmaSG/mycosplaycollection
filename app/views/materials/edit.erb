@@ -1,23 +1,39 @@
+<div class="center">
 <% if Helpers.is_logged_in?(session) %>
-<%= @error %>
-    <% if Helpers.current_user(session).id === @material.cosplay.user_id%>
-        <%= @error %>
         <h2>Edit Material</h2>
         <form action="/materials/<%= @material.id%>" method="post">
+        <% if Helpers.current_user(session).id === @material.cosplay.user_id%>
+        <% if @material.errors.any? %>
+        <div class="error">
+          <ul>
+          <% @material.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
         <input id="hidden" type="hidden" name="_method" value="patch">
             Name:
-            <input type="text" name="material[name]" placeholder=<%= @material.name%>>
+            <input type="text" name="material[name]" placeholder=<%= @material.name%>><br>
             </br>
             Link:
             <input type="text" name="material[store_link]" placeholder=<%= @material.store_link%>><br>
             </br>
+            Quantity:
+            <input type="text" name="material[quantity]" placeholder=<%= @material.quantity%>><br>
+            <br>
+            Price:
+            <input type="text" name="material[price]" placeholder=<%= @material.price%>><br>
+            <br>
             <input type="submit" name="submit" value ="Edit" id="submit">
 
         </form>
     <% else %>
-        <h1> You can only edit your own tweets </h1>
+        <h1> You can only edit your Materials </h1>
     <% end %>
 
   <% else %>
       <h1> You Must Be Logged in to Edit Tweets </h1>
   <% end %>
+</div>
+
