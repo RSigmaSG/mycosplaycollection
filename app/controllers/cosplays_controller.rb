@@ -14,12 +14,6 @@ class CosplaysController < ApplicationController
         erb :"cosplays/new"
     end
 
-    get '/cosplays/:id' do
-        redirect '/' if !Helpers.is_logged_in?(session)
-        @cosplay = Cosplay.find(params[:id])
-        @materials = @cosplay.materials
-        erb :"cosplays/show"
-    end
     post '/cosplays' do
         #binding.pry
         redirect '/' if !Helpers.is_logged_in?(session)
