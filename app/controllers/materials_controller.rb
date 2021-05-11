@@ -26,7 +26,8 @@ class MaterialsController < ApplicationController
     patch '/materials/:id' do
         redirect '/' if !Helpers.is_logged_in?(session)
         @material = Material.find(params[:id])
-        if (@material.update)
+        @material.update(params[:material])
+        if (@material.save)
             redirect to "users/show"
         else
             erb :"materials/new"

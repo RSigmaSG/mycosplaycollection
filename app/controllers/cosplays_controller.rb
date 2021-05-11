@@ -29,7 +29,8 @@ class CosplaysController < ApplicationController
         #binding.pry
         redirect '/' if !Helpers.is_logged_in?(session)
         @cosplay = Cosplay.find(params[:id])
-        if (@cosplay.update)
+        @cosplay.update(params[:cosplay])
+        if (@cosplay.save)
             redirect to "users/show"
         else
             erb :"cosplay/new"
